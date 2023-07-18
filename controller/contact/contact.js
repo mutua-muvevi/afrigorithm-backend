@@ -6,7 +6,6 @@ exports.contactMessage = async (req, res, next) => {
 	const { fullname, telephone, email, message } = req.body;
 
 	try {
-		console.log(response)
 		if (!fullname) {
 			return next(new ErrorResponse("Fullname is required", 400));
 		}
@@ -33,7 +32,7 @@ exports.contactMessage = async (req, res, next) => {
 			to: "info@afrigorithm.com",
 			from: process.env.SENDMAILAPIFROM,
 			subject: `Contact Messafe from : ${fullname}`,
-			text: emailHTML,
+			html: emailHTML,
 		};
 
 		const response = await SendEmail(emailData)

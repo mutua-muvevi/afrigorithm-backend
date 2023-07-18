@@ -1,11 +1,8 @@
 const SparkPost = require("sparkpost");
-const client = new SparkPost(process.env.SENDMAILAPIKEY);
+const client = new SparkPost(process.env.SENDMAILAPIKEY, {origin: 'https://api.eu.sparkpost.com'});
 
 const SendEmail = async ({ to, from, subject, html }) => {
 	const response = await client.transmissions.send({
-		options: {
-			sandbox: true,
-		},
 		content: {
 			from,
 			subject,
