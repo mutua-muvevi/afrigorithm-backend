@@ -19,6 +19,7 @@ app.use(cors())
 
 //custom middleware
 app.use("/api/user", require("./routes/user"));
+app.use("/api/email", require("./routes/email"));
 app.use("/api/contact", require("./routes/contact"));
 app.use("/api/quotation", require("./routes/quotation"));
 
