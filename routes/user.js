@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 //custom module imports
-const { post, editById, fetchAll, fetchOne, deleteUser } = require("../controller/user");
+const { post, editById, fetchAll, fetchOne, deleteUser } = require("../controller/user/user");
 const { upload } = require("../utils/multer");
 
 //routes

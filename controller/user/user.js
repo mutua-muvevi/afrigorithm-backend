@@ -1,9 +1,9 @@
 //package imports
 
 //module imports
-const User = require("../model/user");
-const cloudinary = require("../config/cloudinary");
-const ErrorResponse = require("../utils/errorResponse");
+const User = require("../../model/user/user");
+const cloudinary = require("../../config/cloudinary");
+const ErrorResponse = require("../../utils/errorResponse");
 
 //custom post error strings
 const userExistsError = "User already exists";
