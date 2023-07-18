@@ -22,7 +22,7 @@ const EmailSchema = new Schema({
 }, SchemaOptions);
 
 //the model
-const Quotation = mongoose.model("Quotation", EmailSchema)
+const Email = mongoose.model("Email", EmailSchema)
 
 //export 
-module.exports = Quotation
+module.exports = Email

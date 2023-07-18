@@ -1,4 +1,3 @@
-const SendEmail = require("../../utils/sendMail");
 const logger = require("../../utils/logger");
 const ErrorResponse = require("../../utils/errorResponse");
 const Email = require("../../model/email/email");
@@ -11,18 +10,34 @@ exports.postEmail = async (req, res, next) => {
 			return next(new ErrorResponse("Email is required", 400));
 		}
 
-		const email = Email.create({ email })
+		// Check if the email exists
+		const emailExists = await Email.findOne({ email });
 
-		if(!email){
-			return next(new ErrorResponse("Something went wrong while creating Email", 400))
+		// If the email does not exist, create it.
+		if (!emailExists) {
+			const newEmail = await Email.create({ email });
+
+			if (!newEmail) {
+				return next(
+					new ErrorResponse(
+						"Something went wrong while creating Email",
+						400
+					)
+				);
+			}
+
+			res.status(200).json({
+				success: true,
+				data: email,
+				message: "Email was created successfully",
+			});
+		} else {
+			// If the email exists, send a response without creating it.
+			res.status(200).json({
+				success: false,
+				message: "Email already exists",
+			});
 		}
-
-		res.status(200).json({
-			success: true,
-			data: email,
-			message: "Email was created successfully"
-		})
-
 	} catch (error) {
 		logger.error(`Caught post email error: ${JSON.stringify(error)}`);
 		next(error);
