@@ -19,12 +19,13 @@ app.use(cors())
 
 //custom middleware
 app.use("/api/user", require("./routes/user"));
+app.use("/api/contact", require("./routes/contact"));
 
 //error middleware
 app.use(errorHandler)
 
 //ports
-const PORT = process.env.PORT || 4545
+const PORT = process.env.PORT || 9000
 app.listen(PORT, () => logger.info(`Connected to port ${PORT}`))
 
 // process termination after unhandles promise rejection
